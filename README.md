@@ -15,13 +15,23 @@ DeepSeek Harness（DSH）Web GUI 的**会话统计插件**：在顶部分栏「�
 
 ## 安装
 
+### 从 GitHub 直接安装（推荐）
+
+```bash
+dsh plugin --profile web add github:wellcover/dsh-conversation-stats
+# 或锁定稳定版本 tag（推荐）
+dsh plugin --profile web add github:wellcover/dsh-conversation-stats#v1.0.2
+```
+
+### 或从源码打包（本地开发）
+
 ```bash
 cd dsh-conversation-stats
-pnpm pack
+npm pack
 dsh plugin --profile web add dsh-conversation-stats-1.0.2.tgz
 ```
 
-装完**重启 `dsh web`**（或桌面应用重开）。`dsh plugin add` 会自动把包装进 profile、写入 `dsh.profile.bundles`，并随包的 `cordis.patch.yml` 挂载插件行。
+装完**重启 `dsh web`**（或桌面应用重开）。`dsh plugin add` 会自动把包装进 profile、写入 `dsh.profile.bundles`，并随包的 `cordis.patch.yml` 挂载插件行（GitHub 引用安装同样适用）。
 
 手动安装（无 pnpm）：拷贝包到 `~/.dsh/profiles/web/node_modules/dsh-conversation-stats`，在 profile `package.json` 的 `dsh.profile.bundles` 追加 `"dsh-conversation-stats"`，并在 `cordis.patch.yml` 追加：
 
