@@ -1,0 +1,15 @@
+# dsh-conversation-stats — bundle patch layer.
+#
+# When the package is installed into a DSH profile (via `dsh plugin --profile
+# web add dsh-conversation-stats` or manually), the loader applies this patch
+# over the profile root entry list, mounting the plugin row.
+#
+# The `inject` list waits for the fs / webServer services before activating:
+# the plugin registers the /conversation-stats/api route on the host web
+# server and resolves the sessions root under $DSH_HOME (default ~/.dsh).
+- insert:
+    - id: conversation-stats
+      name: 'dsh-conversation-stats'
+      inject:
+        - fs
+        - webServer
