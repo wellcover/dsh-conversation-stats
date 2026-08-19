@@ -7,11 +7,13 @@ DeepSeek Harness（DSH）Web GUI 的**会话统计插件**：在顶部分栏「�
 ## 功能
 
 - 📊 **顶部「会话统计」tab**（`conversation.view`，排在「对话」「轨迹」及用量插件的 tab 之后）
-- 📋 **会话总览表**：标题/片段、轮数、步数、调用、输出 tok、输入 tok、缓存 tok、最后活跃，按最后活跃倒序
+- 📋 **会话总览表**：标题/片段、轮数、步数、调用、输出 tok、输入 tok、缓存 tok、缓存命中率、最后活跃，按最后活跃倒序
 - 🧮 **汇总 chips**：会话数 / 总轮数 / 总步数 / 总模型调用 / 总 token
+- 🚀 **缓存命中率列**（v1.0.6）：`命中率 = 缓存读 /（输入 + 缓存读）`，分子分母皆为 0 时显示「—」
 - 🔍 **点击会话看明细**：会话信息卡（ID、工作区、时间、轮/步/调用、token 构成、LLM/工具耗时、模型分布、结束原因）+ 工具调用表（次数/总耗时/失败数）+ 逐条模型调用明细表（时间/模型/结束原因/输入/输出/缓存/工具）
 - ⏱️ **扫描时间显示** + 手动「刷新」（强制重扫）+ 60 秒自动刷新
 - 🗑️ **彻底删除会话**（v1.0.2）：总览表最右侧「删除」列，经红色确认弹层后删除对应会话目录（`~/.dsh/sessions/…/<sessionId>`，含 `session.jsonl.zstd`），删除后自动重扫刷新列表
+- 🔄 **加载归档会话**（v1.0.3）：总览表「加载」列，对已归档（在 DSH 对话列表被隐藏）的会话显示绿色「恢复」按钮，点击把该会话 id 从 DSH `storages/workspace.json` 的 `global.archivedSessionIds` 移除，使其重新出现在 DSH 对话列表（**需重启 DSH Web 生效**；非归档会话该列显示「—」）
 
 ## 安装
 
@@ -20,7 +22,7 @@ DeepSeek Harness（DSH）Web GUI 的**会话统计插件**：在顶部分栏「�
 ```bash
 dsh plugin --profile web add github:wellcover/dsh-conversation-stats
 # 或锁定稳定版本 tag（推荐）
-dsh plugin --profile web add github:wellcover/dsh-conversation-stats#v1.0.2
+dsh plugin --profile web add github:wellcover/dsh-conversation-stats#v1.0.6
 ```
 
 ### 或从源码打包（本地开发）
@@ -28,7 +30,7 @@ dsh plugin --profile web add github:wellcover/dsh-conversation-stats#v1.0.2
 ```bash
 cd dsh-conversation-stats
 npm pack
-dsh plugin --profile web add dsh-conversation-stats-1.0.2.tgz
+dsh plugin --profile web add dsh-conversation-stats-1.0.6.tgz
 ```
 
 装完**重启 `dsh web`**（或桌面应用重开）。`dsh plugin add` 会自动把包装进 profile、写入 `dsh.profile.bundles`，并随包的 `cordis.patch.yml` 挂载插件行（GitHub 引用安装同样适用）。
