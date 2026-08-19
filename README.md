@@ -15,6 +15,10 @@ DeepSeek Harness（DSH）Web GUI 的**会话统计插件**：在顶部分栏「�
 - 🗑️ **彻底删除会话**（v1.0.2）：总览表最右侧「删除」列，经红色确认弹层后删除对应会话目录（`~/.dsh/sessions/…/<sessionId>`，含 `session.jsonl.zstd`），删除后自动重扫刷新列表
 - 🔄 **加载归档会话**（v1.0.3）：总览表「加载」列，对已归档（在 DSH 对话列表被隐藏）的会话显示绿色「恢复」按钮，点击把该会话 id 从 DSH `storages/workspace.json` 的 `global.archivedSessionIds` 移除，使其重新出现在 DSH 对话列表（**需重启 DSH Web 生效**；非归档会话该列显示「—」）
 
+<img width="999" height="480" alt="image" src="https://github.com/user-attachments/assets/2d04dfa8-4af8-40e0-9978-9e32913b2c6f" />
+
+
+
 ## 安装
 
 ### 从 GitHub 直接安装（推荐）
